@@ -23,3 +23,15 @@ public struct TypedNotification<Storage, Object> {
         self.object = object
     }
 }
+
+extension TypedNotification {
+    init(_ notification: Notification, basedOn definition: TypedNotificationDefinition<Storage, Object>) {
+        if Storage.self == Void.self,
+           notification.userInfo?.isEmpty == false {
+            assertionFailure("An expected type is Void, but userInfo contains values.")
+        }
+        let storage = definition.decode(notification.userInfo)
+        let object = notification.object as? Object
+        self.init(name: notification.name, storage: storage, object: object)
+    }
+}

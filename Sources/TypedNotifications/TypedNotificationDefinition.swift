@@ -1,14 +1,14 @@
 import Foundation
 
-public struct TypedNotificationDefinition<Storage, Object> {
+public struct TypedNotificationDefinition<Storage, Object>: Sendable {
     public let name: Notification.Name
-    public let encode: (Storage) -> [AnyHashable: Any]
-    public let decode: ([AnyHashable: Any]?) -> Storage
+    public let encode: @Sendable (Storage) -> [AnyHashable: Any]
+    public let decode: @Sendable ([AnyHashable: Any]?) -> Storage
 
     public init(
         name: Notification.Name,
-        encode: @escaping (Storage) -> [AnyHashable: Any],
-        decode: @escaping ([AnyHashable : Any]?) -> Storage
+        encode: @Sendable @escaping (Storage) -> [AnyHashable: Any],
+        decode: @Sendable @escaping ([AnyHashable : Any]?) -> Storage
     ) {
         self.name = name
         self.encode = encode
@@ -17,8 +17,8 @@ public struct TypedNotificationDefinition<Storage, Object> {
 
     public init(
         name: String,
-        encode: @escaping (Storage) -> [AnyHashable: Any],
-        decode: @escaping ([AnyHashable : Any]?) -> Storage
+        encode: @Sendable @escaping (Storage) -> [AnyHashable: Any],
+        decode: @Sendable @escaping ([AnyHashable : Any]?) -> Storage
     ) {
         self.name = Notification.Name(name)
         self.encode = encode

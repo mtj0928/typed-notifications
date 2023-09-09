@@ -5,20 +5,27 @@ final class TypedNotificationsTests: XCTestCase {
 
     @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
     func testNotifications() async {
+        let center = TypedNotificationCenter()
+        let expectationA = expectation(description: "Task is called")
+        let expectationB = expectation(description: "receive a foo notification")
         Task {
-            try await Task.sleep(nanoseconds: 1_000)
-            let foo = Foo(value: "sender")
-            TypedNotificationCenter.default.post(.foo, storage: 123, object: foo)
+            expectationA.fulfill()
+            let notification = await center.notifications(for: .foo).first(where: { _ in true })
+            XCTAssertEqual(notification?.name.rawValue, "Foo")
+            XCTAssertEqual(notification?.storage, 123)
+            XCTAssertEqual(notification?.object?.value, "sender")
+            expectationB.fulfill()
         }
-        let notification = await TypedNotificationCenter.default.notifications(for: .foo).first(where: { _ in true })
-        XCTAssertEqual(notification?.name.rawValue, "Foo")
-        XCTAssertEqual(notification?.storage, 123)
-        XCTAssertEqual(notification?.object?.value, "sender")
+        await fulfillment(of: [expectationA], timeout: 1)
+        let foo = Foo(value: "sender")
+        center.post(.foo, storage: 123, object: foo)
+        await fulfillment(of: [expectationB], timeout: 1)
     }
 
-    func testNotifications() {
+    func testPublishers() {
+        let center = TypedNotificationCenter()
         let expectation = expectation(description: "receive a foo notification")
-        let cancellable = TypedNotificationCenter.default.publisher(for: .foo)
+        let cancellable = center.publisher(for: .foo)
             .sink { notification in
                 XCTAssertEqual(notification.name.rawValue, "Foo")
                 XCTAssertEqual(notification.storage, 123)
@@ -26,7 +33,22 @@ final class TypedNotificationsTests: XCTestCase {
                 expectation.fulfill()
             }
         let foo = Foo(value: "sender")
-        TypedNotificationCenter.default.post(.foo, storage: 123, object: foo)
+        center.post(.foo, storage: 123, object: foo)
+        wait(for: [expectation], timeout: 1)
+        _ = cancellable
+    }
+
+    func testNoStorage() {
+        let center = TypedNotificationCenter()
+        let expectation = expectation(description: "receive an empty notification")
+        let cancellable = center.publisher(for: .noStorage)
+            .sink { notification in
+                XCTAssertEqual(notification.name.rawValue, "noStorage")
+                XCTAssertEqual(notification.object?.value, "sender")
+                expectation.fulfill()
+            }
+        let foo = Foo(value: "sender")
+        center.notificationCenter.post(name: .init("noStorage"), object: foo, userInfo: [:])
         wait(for: [expectation], timeout: 1)
         _ = cancellable
     }
@@ -47,5 +69,9 @@ extension TypedNotificationDefinition {
         } decode: { userInfo in
             userInfo!["number"] as! Int
         }
+    }
+
+    static var noStorage: TypedNotificationDefinition<Void, Foo> {
+        .init(name: "noStorage")
     }
 }

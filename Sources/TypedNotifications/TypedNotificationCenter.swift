@@ -2,10 +2,10 @@ import Foundation
 import Combine
 
 /// A wrapper of `NotificationCenter` attaching a type information to a `Notification`.
-public struct TypedNotificationCenter {
+public struct TypedNotificationCenter: Sendable {
     let notificationCenter: NotificationCenter
 
-    public init(notificationCenter: NotificationCenter) {
+    public init(notificationCenter: NotificationCenter = NotificationCenter()) {
         self.notificationCenter = notificationCenter
     }
 
@@ -39,11 +39,7 @@ extension TypedNotificationCenter {
         object: Object? = nil
     ) -> Notifications<TypedNotification<Storage, Object>> {
         notificationCenter.notifications(named: definition.name, object: object)
-            .map { notification in
-                let storage = definition.decode(notification.userInfo)
-                let object = notification.object as? Object
-                return TypedNotification(name: notification.name, storage: storage, object: object)
-            }
+            .map { TypedNotification($0, basedOn: definition) }
     }
 }
 
