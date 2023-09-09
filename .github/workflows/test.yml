@@ -1,0 +1,17 @@
+name: Tests
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+jobs:
+  Tests:
+    runs-on: macos-13
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Tests
+      run: |
+        swift test --verbose
