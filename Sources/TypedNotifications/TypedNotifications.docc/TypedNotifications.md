@@ -28,7 +28,7 @@ class User {
 And then, you can post/observe the notifications in type safe manner.
 ```swift
 // [Post]
-// Notifications can be posed in a type safe manner.
+// Notifications can be posted in a type safe manner.
 let newName: String = ...
 let user: User = ...
 TypedNotificationCenter.default.post(.userNameWillUpdate, storage: newName, object: user)
