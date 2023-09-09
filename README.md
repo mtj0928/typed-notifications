@@ -1,11 +1,9 @@
 # typed-notifications
-A library attaching type-information to `NotificationCenter`
-
 This library is attaching type-information to `NotificationCenter`.
 You can post and observe notifications in a type-safe manner.
 
 ## How to use
-Define a notification and how to encode/decode the userInfo.
+Define a notification and how to encode/decode the userInfo in `TypedNotificationDefinition`.
 ```swift
 extension TypedNotificationDefinition {
     static var userNameWillUpdate: TypedNotificationDefinition<String, User> {
