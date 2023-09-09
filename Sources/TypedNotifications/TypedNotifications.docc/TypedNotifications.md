@@ -18,11 +18,6 @@ extension TypedNotificationDefinition {
         }
     }
 }
-
-class User {
-    var name = "name"
-}
-
 ```
 
 And then, you can post/observe the notifications in type safe manner.
@@ -37,8 +32,8 @@ TypedNotificationCenter.default.post(.userNameWillUpdate, storage: newName, obje
 TypedNotificationCenter.default.publisher(for: .userNameWillUpdate, object: user)
     .sink { notification in
         // Notifications can be received in a type safe manner.
-        let user: User? = notification.object
         let newName = notification.storage
+        let user: User? = notification.object
         // ...
     }
 ```
