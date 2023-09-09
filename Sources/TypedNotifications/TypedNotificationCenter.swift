@@ -18,6 +18,14 @@ public struct TypedNotificationCenter {
         let notification = Notification(name: definition.name, object: object, userInfo: userInfo)
         notificationCenter.post(notification)
     }
+
+    public func post<Object>(
+        _ definition: TypedNotificationDefinition<Void, Object>,
+        object: Object? = nil
+    ) {
+        let notification = Notification(name: definition.name, object: object, userInfo: nil)
+        notificationCenter.post(notification)
+    }
 }
 
 extension TypedNotificationCenter {
