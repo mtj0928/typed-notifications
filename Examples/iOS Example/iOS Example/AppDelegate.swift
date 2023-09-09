@@ -23,15 +23,21 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
                 }
                 .store(in: &cancellable)
         }
-    }
-}
 
-func printNotification<Storage, Object>(_ notification: TypedNotification<Storage, Object>) {
-    let text = """
-    Received Notification:
-    ├─ name = \(notification.name.rawValue),
-    ├─ storage = \(notification.storage),
-    └─ object = \(notification.object.debugDescription)
-    """
-    print(text)
+        [
+            UIScene.willConnectTypedNotification,
+            UIScene.didActivateTypedNotification,
+            UIScene.didDisconnectTypedNotification,
+            UIScene.willEnterForegroundTypedNotification,
+            UIScene.willDeactivateTypedNotification,
+            UIScene.didEnterBackgroundTypedNotification
+        ].forEach { definition in
+            TypedNotificationCenter.default.publisher(for: definition)
+                .sink {
+                    printNotification($0)
+                    print("")
+                }
+                .store(in: &cancellable)
+        }
+    }
 }

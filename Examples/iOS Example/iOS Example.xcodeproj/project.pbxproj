@@ -13,6 +13,7 @@
 		18D464C82AAC6B910073F946 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D464C72AAC6B910073F946 /* Preview Assets.xcassets */; };
 		18D464D02AAC6BA90073F946 /* TypedNotifications in Frameworks */ = {isa = PBXBuildFile; productRef = 18D464CF2AAC6BA90073F946 /* TypedNotifications */; };
 		18D464D22AAC6BBF0073F946 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D464D12AAC6BBF0073F946 /* AppDelegate.swift */; };
+		18D464D42AACBAA40073F946 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D464D32AACBAA40073F946 /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		18D464C42AAC6B910073F946 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D464C72AAC6B910073F946 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D464D12AAC6BBF0073F946 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18D464D32AACBAA40073F946 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				18D464C02AAC6B900073F946 /* iOS_ExampleApp.swift */,
 				18D464D12AAC6BBF0073F946 /* AppDelegate.swift */,
 				18D464C22AAC6B900073F946 /* ContentView.swift */,
+				18D464D32AACBAA40073F946 /* Util.swift */,
 				18D464C42AAC6B910073F946 /* Assets.xcassets */,
 				18D464C62AAC6B910073F946 /* Preview Content */,
 			);
@@ -156,6 +159,7 @@
 				18D464C32AAC6B900073F946 /* ContentView.swift in Sources */,
 				18D464C12AAC6B900073F946 /* iOS_ExampleApp.swift in Sources */,
 				18D464D22AAC6BBF0073F946 /* AppDelegate.swift in Sources */,
+				18D464D42AACBAA40073F946 /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

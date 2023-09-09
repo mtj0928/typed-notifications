@@ -1,8 +1,6 @@
 #if canImport(UIKit)
 import UIKit
 
-// MARK: - UIApplication
-
 extension UIApplication {
 
     public static var didBecomeActiveTypedNotification: TypedNotificationDefinition<Void, UIApplication> {
