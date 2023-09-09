@@ -10,11 +10,11 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         super.init()
 
         [
-            TypedNotificationDefinition<Void, UIApplication>.didBecomeActiveNotification,
-            .didEnterBackgroundNotification,
-            .willEnterForegroundNotification,
-            .willResignActiveNotification,
-            .willTerminateNotification
+            UIApplication.didBecomeActiveTypedNotification,
+            UIApplication.didEnterBackgroundTypedNotification,
+            UIApplication.willEnterForegroundTypedNotification,
+            UIApplication.willResignActiveTypedNotification,
+            UIApplication.willTerminateTypedNotification
         ].forEach { definition in
             TypedNotificationCenter.default.publisher(for: definition)
                 .sink {
@@ -28,7 +28,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 
 func printNotification<Storage, Object>(_ notification: TypedNotification<Storage, Object>) {
     let text = """
-    Notification received:
+    Received Notification:
     ├─ name = \(notification.name.rawValue),
     ├─ storage = \(notification.storage),
     └─ object = \(notification.object.debugDescription)
