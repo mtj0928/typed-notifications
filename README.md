@@ -2,7 +2,7 @@
 This library is attaching type-information to `NotificationCenter`.
 You can post and observe notifications in a type-safe manner.
 
-## How to use
+## How to Use
 Define a notification and how to encode/decode the userInfo in `TypedNotificationDefinition`.
 ```swift
 extension TypedNotificationDefinition {
@@ -33,3 +33,12 @@ TypedNotificationCenter.default.publisher(for: .userNameWillUpdate, object: user
         // ...
     }
 ```
+
+## Pre-defined Notifications
+This repository contains frequent system notifications.
+- UIKit
+    - [UIApplication](Sources/TypedNotifications/UIKit/UIApplication.swift)
+    - [UIScene](Sources/TypedNotifications/UIKit/UIScene.swift)
+    - [UIResponder](Sources/TypedNotifications/UIKit/UIResponder.swift)
+
+Your PR adding new notifications is appreciated. Feel free to make a new PR.
