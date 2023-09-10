@@ -9,6 +9,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     override init() {
         super.init()
 
+        // MARK: - UIApplication
         [
             UIApplication.didBecomeActiveTypedNotification,
             UIApplication.didEnterBackgroundTypedNotification,
@@ -17,13 +18,11 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             UIApplication.willTerminateTypedNotification
         ].forEach { definition in
             TypedNotificationCenter.default.publisher(for: definition)
-                .sink {
-                    printNotification($0)
-                    print("")
-                }
+                .sink { printNotification($0) }
                 .store(in: &cancellable)
         }
-
+        
+        // MARK: - UIScene
         [
             UIScene.willConnectTypedNotification,
             UIScene.didActivateTypedNotification,
@@ -33,10 +32,21 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             UIScene.didEnterBackgroundTypedNotification
         ].forEach { definition in
             TypedNotificationCenter.default.publisher(for: definition)
-                .sink {
-                    printNotification($0)
-                    print("")
-                }
+                .sink { printNotification($0) }
+                .store(in: &cancellable)
+        }
+
+        // MARK: - UIResponder
+        [
+            UIResponder.keyboardWillShowTypedNotification,
+            UIResponder.keyboardDidShowTypedNotification,
+            UIResponder.keyboardWillHideTypedNotification,
+            UIResponder.keyboardDidHideTypedNotification,
+            UIResponder.keyboardWillChangeFrameTypedNotification,
+            UIResponder.keyboardDidChangeFrameTypedNotification
+        ].forEach { definition in
+            TypedNotificationCenter.default.publisher(for: definition)
+                .sink { notification in printNotification(notification) }
                 .store(in: &cancellable)
         }
     }

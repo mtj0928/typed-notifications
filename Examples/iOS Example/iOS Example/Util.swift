@@ -1,3 +1,4 @@
+import Foundation
 import TypedNotifications
 
 func printNotification<Storage, Object>(_ notification: TypedNotification<Storage, Object>) {
@@ -8,4 +9,11 @@ func printNotification<Storage, Object>(_ notification: TypedNotification<Storag
     └─ object = \(notification.object.debugDescription)
     """
     print(text)
+}
+
+func printNotification(_ notification: Notification) {
+    let userInfo = notification.userInfo
+    userInfo?.forEach({ key, value in
+        print("\(key) = \(value)")
+    })
 }

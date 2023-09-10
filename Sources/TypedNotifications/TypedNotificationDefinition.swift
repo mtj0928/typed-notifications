@@ -36,4 +36,17 @@ public struct TypedNotificationDefinition<Storage, Object>: Sendable {
         self.encode = { _ in [:] }
         self.decode = { _ in }
     }
+
+
+    public init(name: Notification.Name) where Storage: UserInfoRepresentable {
+        self.name = name
+        self.encode = { storage in storage.convertToUserInfo() }
+        self.decode = { userInfo in Storage(userInfo: userInfo ?? [:]) }
+    }
+
+    public init(name: String) where Storage: UserInfoRepresentable {
+        self.name = Notification.Name(name)
+        self.encode = { storage in storage.convertToUserInfo() }
+        self.decode = { userInfo in Storage(userInfo: userInfo ?? [:]) }
+    }
 }
