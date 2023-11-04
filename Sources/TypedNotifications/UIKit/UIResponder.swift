@@ -1,4 +1,4 @@
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(xrOS)
 import UIKit
 
 extension UIResponder {
