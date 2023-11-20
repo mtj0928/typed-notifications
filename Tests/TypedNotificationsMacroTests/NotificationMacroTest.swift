@@ -10,7 +10,7 @@ let testMacros: [String: Macro.Type] = [
 ]
 #endif
 
-final class MyMacroTests: XCTestCase {
+final class NotificationMacroTests: XCTestCase {
 
     func testNotificationMacro() throws {
 #if canImport(TypedNotificationsMacro)
