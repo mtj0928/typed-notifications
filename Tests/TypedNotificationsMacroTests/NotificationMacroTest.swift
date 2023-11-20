@@ -1,28 +1,58 @@
+import SwiftSyntaxMacros
+import SwiftSyntaxMacrosTestSupport
 import XCTest
 
-final class NotificationMacroTest: XCTestCase {
+#if canImport(TypedNotificationsMacro)
+import TypedNotificationsMacro
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+let testMacros: [String: Macro.Type] = [
+    "Notification": NotificationMacro.self,
+]
+#endif
+
+final class MyMacroTests: XCTestCase {
+
+    func testNotificationMacro() throws {
+#if canImport(TypedNotificationsMacro)
+        assertMacroExpansion(
+            """
+            @Notification
+            static var userWillUpdate: TypedNotificationDefinition<String, User>
+            """,
+            expandedSource: 
+            """
+            static var userWillUpdate: TypedNotificationDefinition<String, User> {
+                get {
+                    TypedNotificationDefinition<String, User>(name: "userWillUpdate")
+                }
+            }
+            """,
+            macros: testMacros
+        )
+#else
+        throw XCTSkip("macros are only supported when running tests for the host platform")
+#endif
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testNotificationWithGivenNameMacro() throws {
+#if canImport(TypedNotificationsMacro)
+        assertMacroExpansion(
+            """
+            @Notification("custom")
+            static var userWillUpdate: TypedNotificationDefinition<String, User>
+            """,
+            expandedSource:
+            """
+            static var userWillUpdate: TypedNotificationDefinition<String, User> {
+                get {
+                    TypedNotificationDefinition<String, User>(name: "custom")
+                }
+            }
+            """,
+            macros: testMacros
+        )
+#else
+        throw XCTSkip("macros are only supported when running tests for the host platform")
+#endif
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
