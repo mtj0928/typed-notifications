@@ -34,6 +34,37 @@ TypedNotificationCenter.default.publisher(for: .userNameWillUpdate, object: user
     }
 ```
 
+## UserInfoRepresentable
+
+``UserInfoRepresentable`` is a protocol for encoding and decoding your type and `userInfo`.
+
+```swift
+struct UserNameUpdateNotificationStorage: UserInfoRepresentable {
+    let oldName: String
+    let newName: String
+
+    init(userInfo: [AnyHashable: Any]) {
+        self.oldName = (userInfo["oldName"] as? String) ?? ""
+        self.newName = (userInfo["newName"] as? String) ?? ""
+    }
+
+    func convertToUserInfo() -> [AnyHashable : Any] {
+        [
+            "oldName": oldName,
+            "newName": newName
+        ]
+    }
+}
+```
+
+And then you can use `@Ntification` macro.
+```swift
+extension TypedNotificationDefinition {
+    @Notification
+    static var userNameUpdate: TypedNotificationDefinition<UserNameUpdateNotificationStorage, User> 
+}
+```
+
 ## Pre-defined Notifications
 This repository contains frequent system notifications.
 - UIKit
