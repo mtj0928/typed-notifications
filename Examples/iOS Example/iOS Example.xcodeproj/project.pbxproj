@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187E45FC2B0E23E400BB20DD /* TypedNotifications in Frameworks */ = {isa = PBXBuildFile; productRef = 187E45FB2B0E23E400BB20DD /* TypedNotifications */; };
 		18D464C12AAC6B900073F946 /* iOS_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D464C02AAC6B900073F946 /* iOS_ExampleApp.swift */; };
 		18D464C32AAC6B900073F946 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D464C22AAC6B900073F946 /* ContentView.swift */; };
 		18D464C52AAC6B910073F946 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D464C42AAC6B910073F946 /* Assets.xcassets */; };
 		18D464C82AAC6B910073F946 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D464C72AAC6B910073F946 /* Preview Assets.xcassets */; };
-		18D464D02AAC6BA90073F946 /* TypedNotifications in Frameworks */ = {isa = PBXBuildFile; productRef = 18D464CF2AAC6BA90073F946 /* TypedNotifications */; };
 		18D464D22AAC6BBF0073F946 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D464D12AAC6BBF0073F946 /* AppDelegate.swift */; };
 		18D464D42AACBAA40073F946 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D464D32AACBAA40073F946 /* Util.swift */; };
 /* End PBXBuildFile section */
@@ -31,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D464D02AAC6BA90073F946 /* TypedNotifications in Frameworks */,
+				187E45FC2B0E23E400BB20DD /* TypedNotifications in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 			);
 			name = "iOS Example";
 			packageProductDependencies = (
-				18D464CF2AAC6BA90073F946 /* TypedNotifications */,
+				187E45FB2B0E23E400BB20DD /* TypedNotifications */,
 			);
 			productName = "iOS Example";
 			productReference = 18D464BD2AAC6B900073F946 /* iOS Example.app */;
@@ -367,7 +367,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		18D464CF2AAC6BA90073F946 /* TypedNotifications */ = {
+		187E45FB2B0E23E400BB20DD /* TypedNotifications */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TypedNotifications;
 		};

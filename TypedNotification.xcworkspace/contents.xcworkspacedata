@@ -5,7 +5,7 @@
       location = "group:">
    </FileRef>
    <Group
-      location = "group:untitled folder"
+      location = "group:Examples"
       name = "Examples">
       <FileRef
          location = "group:../Examples/iOS Example/iOS Example.xcodeproj">
