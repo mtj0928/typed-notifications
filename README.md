@@ -2,6 +2,28 @@
 This library is attaching type-information to `NotificationCenter`.
 You can post and observe notifications in a type-safe manner.
 
+```swift
+TypedNotificationCenter.default
+    .publisher(for: .userNameWillUpdate, object: user)
+    .sink { notification in
+        // Notifications can be received in a type safe manner.
+        let storage: UserNameUpdateNotificationStorage = notification.storage
+        let user: User? = notification.object
+        // ...
+    }
+
+extension TypedNotificationDefinition {
+    @Notification
+    static var userNameUpdate: TypedNotificationDefinition<UserNameUpdateNotificationStorage, User> 
+}
+
+@UserInfoRepresentable
+struct UserNameUpdateNotificationStorage {
+    let oldName: String
+    let newName: String
+}
+```
+
 ## How to Use
 Define a notification and how to encode/decode the userInfo in `TypedNotificationDefinition`.
 ```swift
@@ -32,6 +54,22 @@ TypedNotificationCenter.default.publisher(for: .userNameWillUpdate, object: user
         let user: User? = notification.object
         // ...
     }
+```
+
+### Notification macro
+
+You can use `@Notification` macro, if `@UserInforRepresentable` macro is attached to your type.
+```swift
+extension TypedNotificationDefinition {
+    @Notification
+    static var userNameUpdate: TypedNotificationDefinition<UserNameUpdateNotificationStorage, User> 
+}
+
+@UserInfoRepresentable
+struct UserNameUpdateNotificationStorage {
+    let oldName: String
+    let newName: String
+}
 ```
 
 ## Pre-defined Notifications

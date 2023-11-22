@@ -1,4 +1,5 @@
 import XCTest
+import UserInfoRepresentable
 @testable import TypedNotifications
 
 final class TypedNotificationsTests: XCTestCase {
@@ -52,6 +53,61 @@ final class TypedNotificationsTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
         _ = cancellable
     }
+
+    func testCustomUserInfo() {
+        let center = TypedNotificationCenter()
+        let expectation = expectation(description: "receive an empty notification")
+        let cancellable = center.publisher(for: .customUserInfo)
+            .sink { notification in
+                XCTAssertEqual(notification.name.rawValue, "customUserInfo")
+                XCTAssertEqual(notification.object?.value, "sender")
+                XCTAssertEqual(notification.storage.value, "userInfo")
+                expectation.fulfill()
+            }
+        let foo = Foo(value: "sender")
+        center.post(.customUserInfo, storage: CustomUserInfo(value: "userInfo"), object: foo)
+        wait(for: [expectation], timeout: 1)
+        _ = cancellable
+    }
+
+    func testMacro() {
+#if canImport(TypedNotificationsMacro)
+        let center = TypedNotificationCenter()
+        let expectation = expectation(description: "receive an empty notification")
+        let cancellable = center.publisher(for: .macroNotification)
+            .sink { notification in
+                XCTAssertEqual(notification.name.rawValue, "macroNotification")
+                XCTAssertEqual(notification.object?.value, "sender")
+                expectation.fulfill()
+            }
+        let foo = Foo(value: "sender")
+        center.post(.macroNotification, object: foo)
+        wait(for: [expectation], timeout: 1)
+        _ = cancellable
+#else
+        XCTSkip("Macro is not support on the current test environment.")
+#endif
+    }
+
+    func testMacroWithName() {
+#if canImport(TypedNotificationsMacro)
+        let center = TypedNotificationCenter()
+        let expectation = expectation(description: "receive an empty notification")
+        let cancellable = center.publisher(for: .macroNotificationWithName)
+            .sink { notification in
+                XCTAssertEqual(notification.name.rawValue, "customName")
+                XCTAssertEqual(notification.object?.value, "sender")
+                XCTAssertEqual(notification.storage.value, "userInfo")
+                expectation.fulfill()
+            }
+        let foo = Foo(value: "sender")
+        center.post(.macroNotificationWithName, storage: CustomUserInfo(value: "userInfo"), object: foo)
+        wait(for: [expectation], timeout: 1)
+        _ = cancellable
+#else
+        XCTSkip("Macro is not support on the current test environment.")
+#endif
+    }
 }
 
 class Foo {
@@ -73,5 +129,25 @@ extension TypedNotificationDefinition {
 
     static var noStorage: TypedNotificationDefinition<Void, Foo> {
         .init(name: "noStorage")
+    }
+
+    static var customUserInfo: TypedNotificationDefinition<CustomUserInfo, Foo> {
+        .init(name: "customUserInfo")
+    }
+
+    @Notification
+    static var macroNotification: TypedNotificationDefinition<Void, Foo>
+
+    @Notification(name: "customName")
+    static var macroNotificationWithName: TypedNotificationDefinition<CustomUserInfo, Foo>
+}
+
+
+@UserInfoRepresentable
+struct CustomUserInfo {
+    let value: String
+
+    init(value: String) {
+        self.value = value
     }
 }
