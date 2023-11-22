@@ -4,7 +4,7 @@ You can post and observe notifications in a type-safe manner.
 
 ```swift
 TypedNotificationCenter.default
-    .publisher(for: .userNameWillUpdate, object: user)
+    .publisher(for: .userNameUpdate, object: user)
     .sink { notification in
         // Notifications can be received in a type safe manner.
         let storage: UserNameUpdateNotificationStorage = notification.storage
