@@ -1,4 +1,5 @@
 #if canImport(UIKit) && !os(xrOS)
+import UserInfoRepresentable
 import UIKit
 
 extension UIResponder {
