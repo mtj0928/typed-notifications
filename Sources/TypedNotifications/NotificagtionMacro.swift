@@ -1,4 +1,3 @@
-#if canImport(TypedNotificationsMacro)
 import TypedNotificationsMacro
 
 /// A macro for defining a notification whose notification name is attached property name.
@@ -10,4 +9,3 @@ public macro Notification() = #externalMacro(module: "TypedNotificationsMacro", 
 /// - Parameter name: A name of the notification.
 @attached(accessor)
 public macro Notification(name: String) = #externalMacro(module: "TypedNotificationsMacro", type: "NotificationMacro")
-#endif

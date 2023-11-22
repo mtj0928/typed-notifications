@@ -1,4 +1,5 @@
 import XCTest
+import UserInfoRepresentable
 @testable import TypedNotifications
 
 final class TypedNotificationsTests: XCTestCase {
@@ -117,22 +118,6 @@ class Foo {
     }
 }
 
-class CustomUserInfo: UserInfoRepresentable {
-    let value: String?
-
-    init(value: String?) {
-        self.value = value
-    }
-
-    required init(userInfo: [AnyHashable : Any]) {
-        value = userInfo["value"] as? String
-    }
-
-    func convertToUserInfo() -> [AnyHashable : Any] {
-        ["value": value ?? ""]
-    }
-}
-
 extension TypedNotificationDefinition {
     static var foo: TypedNotificationDefinition<Int, Foo> {
         .init(name: "Foo") { number in
@@ -150,11 +135,19 @@ extension TypedNotificationDefinition {
         .init(name: "customUserInfo")
     }
 
-#if canImport(TypedNotificationsMacro)
     @Notification
     static var macroNotification: TypedNotificationDefinition<Void, Foo>
 
     @Notification(name: "customName")
     static var macroNotificationWithName: TypedNotificationDefinition<CustomUserInfo, Foo>
-#endif
+}
+
+
+@UserInfoRepresentable
+struct CustomUserInfo {
+    let value: String
+
+    init(value: String) {
+        self.value = value
+    }
 }

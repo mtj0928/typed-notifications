@@ -5,7 +5,7 @@ import XCTest
 #if canImport(TypedNotificationsMacro)
 import TypedNotificationsMacro
 
-let testMacros: [String: Macro.Type] = [
+private let testMacros: [String: Macro.Type] = [
     "Notification": NotificationMacro.self,
 ]
 #endif

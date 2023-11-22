@@ -1,14 +1,6 @@
-import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
-
-@main
-struct TypedNotificationsMacroPlugin: CompilerPlugin {
-    let providingMacros: [Macro.Type] = [
-        NotificationMacro.self
-    ]
-}
 
 public struct NotificationMacro: AccessorMacro {
     public static func expansion(

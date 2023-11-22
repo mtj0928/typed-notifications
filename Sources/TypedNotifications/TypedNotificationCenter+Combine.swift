@@ -9,7 +9,7 @@ extension TypedNotificationCenter {
         object: Object? = nil
     ) -> some Publisher<TypedNotification<Storage, Object>, Never> {
         notificationCenter.publisher(for: definition.name, object: object)
-            .map { TypedNotification($0, basedOn: definition) }
+            .compactMap { TypedNotification($0, basedOn: definition) }
     }
 }
 #endif

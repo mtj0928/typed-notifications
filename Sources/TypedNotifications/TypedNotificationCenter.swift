@@ -31,7 +31,7 @@ public struct TypedNotificationCenter: Sendable {
 extension TypedNotificationCenter {
 
     @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
-    public typealias Notifications<Element> = AsyncMapSequence<NotificationCenter.Notifications, Element>
+    public typealias Notifications<Element> = AsyncCompactMapSequence<NotificationCenter.Notifications, Element>
 
     @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
     public func notifications<Storage, Object: AnyObject>(
@@ -39,7 +39,7 @@ extension TypedNotificationCenter {
         object: Object? = nil
     ) -> Notifications<TypedNotification<Storage, Object>> {
         notificationCenter.notifications(named: definition.name, object: object)
-            .map { TypedNotification($0, basedOn: definition) }
+            .compactMap { TypedNotification($0, basedOn: definition) }
     }
 }
 
