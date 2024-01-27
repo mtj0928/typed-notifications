@@ -74,9 +74,11 @@ struct UserNameUpdateNotificationStorage {
 
 ## Pre-defined Notifications
 This repository contains frequent system notifications.
-- UIKit
+- UIKit 
     - [UIApplication](Sources/TypedNotifications/UIKit/UIApplication.swift)
     - [UIScene](Sources/TypedNotifications/UIKit/UIScene.swift)
     - [UIResponder](Sources/TypedNotifications/UIKit/UIResponder.swift)
+- Core Data
+    - [NSManagedObjectContext](Sources/TypedNotifications/CoreData/NSManagedObjectContext.swift)
 
 Your PR adding new notifications is appreciated. Feel free to make a new PR.
