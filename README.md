@@ -1,5 +1,5 @@
 # typed-notifications
-This library is attaching type-information to `NotificationCenter`.
+This library attaches type-information to `NotificationCenter`.
 You can post and observe notifications in a type-safe manner.
 
 ```swift
