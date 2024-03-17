@@ -1,4 +1,4 @@
-#if canImport(UIKit) && !os(xrOS)
+#if canImport(UIKit) && !os(visionOS)
 import UserInfoRepresentable
 import UIKit
 
