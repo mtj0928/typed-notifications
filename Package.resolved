@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mtj0928/userinfo-representable",
       "state" : {
-        "revision" : "764e9aff8a55f0eb47f744880fbbdfe08bd8e26a",
-        "version" : "1.0.1"
+        "revision" : "3dffb67eafb65b1cb461f5f1a4eeefece750cb80",
+        "version" : "1.0.2"
       }
     }
   ],
