@@ -34,7 +34,7 @@ extension TypedNotificationCenter {
     public typealias Notifications<Element> = AsyncCompactMapSequence<NotificationCenter.Notifications, Element>
 
     @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
-    public func notifications<Storage, Object: AnyObject>(
+    public func notifications<Storage, Object: AnyObject & Sendable>(
         for definition: TypedNotificationDefinition<Storage, Object>,
         object: Object? = nil
     ) -> Notifications<TypedNotification<Storage, Object>> {

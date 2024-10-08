@@ -2,7 +2,6 @@
 import UIKit
 
 extension UIApplication {
-
     public static var didBecomeActiveTypedNotification: TypedNotificationDefinition<Void, UIApplication> {
         .init(name: UIApplication.didBecomeActiveNotification)
     }
