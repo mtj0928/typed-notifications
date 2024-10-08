@@ -1,19 +1,24 @@
-name: Tests
+name: Test
 
-on: 
+on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - '*'
+    branches: [ "main" ]
+
 jobs:
-  Tests:
-    runs-on: macos-13
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_15.0.1.app/Contents/Developer
+  test:
+    strategy:
+      matrix:
+        swift_version:
+          - "5.9"
+          - "5.10.0"
+          - "6.0"
+    runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run Tests
-      run: |
-        swift test --verbose
+    - uses: SwiftyLab/setup-swift@latest
+      with:
+        swift-version: ${{ matrix.swift_version }}
+    - uses: actions/checkout@v4
+    - name: Run tests
+      run: swift test
