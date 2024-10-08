@@ -3,29 +3,23 @@ import UserInfoRepresentable
 import UIKit
 
 extension UIResponder {
-    public static var keyboardWillShowTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen> {
-        .init(name: UIResponder.keyboardWillShowNotification)
-    }
+    @Notification(name: UIResponder.keyboardWillShowNotification)
+    public static var keyboardWillShowTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
 
-    public static var keyboardDidShowTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen> {
-        .init(name: UIResponder.keyboardDidShowNotification)
-    }
+    @Notification(name: UIResponder.keyboardDidShowNotification)
+    public static var keyboardDidShowTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
 
-    public static var keyboardWillHideTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen> {
-        .init(name: UIResponder.keyboardWillHideNotification)
-    }
+    @Notification(name: UIResponder.keyboardWillHideNotification)
+    public static var keyboardWillHideTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
 
-    public static var keyboardDidHideTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen> {
-        .init(name: UIResponder.keyboardDidHideNotification)
-    }
+    @Notification(name: UIResponder.keyboardDidHideNotification)
+    public static var keyboardDidHideTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
 
-    public static var keyboardWillChangeFrameTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen> {
-        .init(name: UIResponder.keyboardWillChangeFrameNotification)
-    }
+    @Notification(name: UIResponder.keyboardWillChangeFrameNotification)
+    public static var keyboardWillChangeFrameTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
 
-    public static var keyboardDidChangeFrameTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen> {
-        .init(name: UIResponder.keyboardDidChangeFrameNotification)
-    }
+    @Notification(name: UIResponder.keyboardDidChangeFrameNotification)
+    public static var keyboardDidChangeFrameTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
 }
 
 public struct KeyboardNotificationStorage: UserInfoRepresentable {
