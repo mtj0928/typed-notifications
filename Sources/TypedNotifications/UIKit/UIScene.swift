@@ -2,28 +2,22 @@
 import UIKit
 
 extension UIScene {
-    public static var willConnectTypedNotification: TypedNotificationDefinition<Void, UIScene> {
-        .init(name: UIScene.willConnectNotification)
-    }
+    @Notification(name: UIScene.willConnectNotification)
+    public static var willConnectTypedNotification: TypedNotificationDefinition<Void, UIScene>
 
-    public static var didActivateTypedNotification: TypedNotificationDefinition<Void, UIScene> {
-        .init(name: UIScene.didActivateNotification)
-    }
+    @Notification(name: UIScene.didActivateNotification)
+    public static var didActivateTypedNotification: TypedNotificationDefinition<Void, UIScene>
 
-    public static var didDisconnectTypedNotification: TypedNotificationDefinition<Void, UIScene> {
-        .init(name: UIScene.didDisconnectNotification)
-    }
+    @Notification(name: UIScene.didDisconnectNotification)
+    public static var didDisconnectTypedNotification: TypedNotificationDefinition<Void, UIScene>
 
-    public static var willEnterForegroundTypedNotification: TypedNotificationDefinition<Void, UIScene> {
-        .init(name: UIScene.willEnterForegroundNotification)
-    }
+    @Notification(name: UIScene.willEnterForegroundNotification)
+    public static var willEnterForegroundTypedNotification: TypedNotificationDefinition<Void, UIScene>
 
-    public static var willDeactivateTypedNotification: TypedNotificationDefinition<Void, UIScene> {
-        .init(name: UIScene.willDeactivateNotification)
-    }
+    @Notification(name: UIScene.willDeactivateNotification)
+    public static var willDeactivateTypedNotification: TypedNotificationDefinition<Void, UIScene>
 
-    public static var didEnterBackgroundTypedNotification: TypedNotificationDefinition<Void, UIScene> {
-        .init(name: UIScene.didEnterBackgroundNotification)
-    }
+    @Notification(name: UIScene.didEnterBackgroundNotification)
+    public static var didEnterBackgroundTypedNotification: TypedNotificationDefinition<Void, UIScene> 
 }
 #endif

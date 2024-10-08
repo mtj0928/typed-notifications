@@ -70,7 +70,7 @@ final class TypedNotificationsTests: XCTestCase {
         _ = cancellable
     }
 
-    func testMacro() {
+    func testMacro() throws {
 #if canImport(TypedNotificationsMacro)
         let center = TypedNotificationCenter()
         let expectation = expectation(description: "receive an empty notification")
@@ -85,11 +85,11 @@ final class TypedNotificationsTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
         _ = cancellable
 #else
-        XCTSkip("Macro is not support on the current test environment.")
+        throw XCTSkip("Macro is not support on the current test environment.")
 #endif
     }
 
-    func testMacroWithName() {
+    func testMacroWithName() throws {
 #if canImport(TypedNotificationsMacro)
         let center = TypedNotificationCenter()
         let expectation = expectation(description: "receive an empty notification")
@@ -105,12 +105,12 @@ final class TypedNotificationsTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
         _ = cancellable
 #else
-        XCTSkip("Macro is not support on the current test environment.")
+        throw XCTSkip("Macro is not support on the current test environment.")
 #endif
     }
 }
 
-class Foo {
+final class Foo: Sendable {
     let value: String
 
     init(value: String) {

@@ -4,15 +4,14 @@ on:
   push:
     branches:
       - main
-env: 
-  DEVELOPER_DIR: "/Applications/Xcode_14.3.1.app/Contents/Developer"
 jobs:
   DocC:
-    runs-on: macos-13
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_15.0.1.app/Contents/Developer
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: SwiftyLab/setup-swift@latest
+        with:
+          swift-version: "6.0"
+      - uses: actions/checkout@v4
       - name: Build DocC
         run: |
           swift package --allow-writing-to-directory ./docs generate-documentation \
