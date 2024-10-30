@@ -1,4 +1,4 @@
-#if canImport(UIKit) && !os(visionOS)
+#if os(iOS) || targetEnvironment(macCatalyst)
 import UserInfoRepresentable
 import UIKit
 
