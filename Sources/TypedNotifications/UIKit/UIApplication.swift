@@ -1,4 +1,4 @@
-#if canImport(UIKit)
+#if os(iOS) || os(visionOS) || os(tvOS) || targetEnvironment(macCatalyst)
 import UIKit
 
 extension UIApplication {
