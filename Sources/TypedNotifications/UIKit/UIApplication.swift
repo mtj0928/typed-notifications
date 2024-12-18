@@ -1,6 +1,8 @@
 #if os(iOS) || os(visionOS) || os(tvOS) || targetEnvironment(macCatalyst)
 import UIKit
 
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
 extension UIApplication {
     @Notification(name: UIApplication.didBecomeActiveNotification)
     public static var didBecomeActiveTypedNotification: TypedNotificationDefinition<Void, UIApplication>

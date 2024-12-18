@@ -1,6 +1,8 @@
 #if os(iOS) || os(visionOS) || os(tvOS) || targetEnvironment(macCatalyst)
 import UIKit
 
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
 extension UIScene {
     @Notification(name: UIScene.willConnectNotification)
     public static var willConnectTypedNotification: TypedNotificationDefinition<Void, UIScene>
