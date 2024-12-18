@@ -2,6 +2,8 @@
 import UserInfoRepresentable
 import UIKit
 
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
 extension UIResponder {
     @Notification(name: UIResponder.keyboardWillShowNotification)
     public static var keyboardWillShowTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
@@ -22,6 +24,8 @@ extension UIResponder {
     public static var keyboardDidChangeFrameTypedNotification: TypedNotificationDefinition<KeyboardNotificationStorage, UIScreen>
 }
 
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
 public struct KeyboardNotificationStorage: UserInfoRepresentable {
     /// A `Bool` value that indicates whether the keyboard belongs to the current app.
     public let isLocal: Bool?
