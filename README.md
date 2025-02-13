@@ -5,12 +5,9 @@
 </p>
 <p align="center">
     <strong>typed-notifications</strong><br>
-    This library attaches type-information to NotificationCenter.
+    This library attaches type-information to NotificationCenter.<br/>
+    You can post and observe notifications in a type-safe manner.
 </p>
-
-
-This library attaches type-information to `NotificationCenter`.
-You can post and observe notifications in a type-safe manner.
 
 ```swift
 TypedNotificationCenter.default
