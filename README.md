@@ -5,10 +5,11 @@
 </p>
 <p align="center">
     <strong>typed-notifications</strong><br>
-    This library attaches type-information to NotificationCenter.<br/>
-    You can post and observe notifications in a type-safe manner.
+    This library attaches type-information to NotificationCenter.
 </p>
 
+## Example
+You can post and observe notifications in a type-safe manner.
 ```swift
 TypedNotificationCenter.default
     .publisher(for: .userNameUpdate, object: user)
