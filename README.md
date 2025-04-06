@@ -1,12 +1,5 @@
 # typed-notifications
-
-<p align="center">
-    <img width="280" alt="logo" src="https://github.com/user-attachments/assets/935a0d73-6dd2-47e5-8846-f1449dbf7f73">
-</p>
-<p align="center">
-    <strong>typed-notifications</strong><br>
-    This library attaches type-information to NotificationCenter.
-</p>
+This library attaches type-information to NotificationCenter.
 
 ## Example
 You can post and observe notifications in a type-safe manner.
