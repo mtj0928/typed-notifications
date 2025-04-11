@@ -4,7 +4,7 @@ This library attaches type-information to NotificationCenter.
 ## Example
 You can post and observe notifications in a type-safe manner.
 ```swift
-TypedNotificationCenter.default
+NotificationCenter.default
     .publisher(for: .userNameUpdate, object: user)
     .sink { notification in
         // Notifications can be received in a type safe manner.
@@ -45,10 +45,10 @@ And then, you can post/observe the notifications in type safe manner.
 // Notifications can be posted in a type safe manner.
 let newName: String = ...
 let user: User = ...
-TypedNotificationCenter.default.post(.userNameWillUpdate, storage: newName, object: user)
+NotificationCenter.default.post(.userNameWillUpdate, storage: newName, object: user)
 
 // [Observation]
-TypedNotificationCenter.default.publisher(for: .userNameWillUpdate, object: user)
+NotificationCenter.default.publisher(for: .userNameWillUpdate, object: user)
     .sink { notification in
         // Notifications can be received in a type safe manner.
         let newName = notification.storage

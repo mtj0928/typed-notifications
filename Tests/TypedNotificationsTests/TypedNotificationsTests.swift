@@ -6,7 +6,7 @@ final class TypedNotificationsTests: XCTestCase {
 
     @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
     func testNotifications() async {
-        let center = TypedNotificationCenter()
+        let center = NotificationCenter()
         let expectationA = expectation(description: "Task is called")
         let expectationB = expectation(description: "receive a foo notification")
         Task {
@@ -24,7 +24,7 @@ final class TypedNotificationsTests: XCTestCase {
     }
 
     func testPublishers() {
-        let center = TypedNotificationCenter()
+        let center = NotificationCenter()
         let expectation = expectation(description: "receive a foo notification")
         let cancellable = center.publisher(for: .foo)
             .sink { notification in
@@ -40,7 +40,7 @@ final class TypedNotificationsTests: XCTestCase {
     }
 
     func testNoStorage() {
-        let center = TypedNotificationCenter()
+        let center = NotificationCenter()
         let expectation = expectation(description: "receive an empty notification")
         let cancellable = center.publisher(for: .noStorage)
             .sink { notification in
@@ -49,13 +49,13 @@ final class TypedNotificationsTests: XCTestCase {
                 expectation.fulfill()
             }
         let foo = Foo(value: "sender")
-        center.notificationCenter.post(name: .init("noStorage"), object: foo, userInfo: [:])
+        center.post(name: .init("noStorage"), object: foo, userInfo: [:])
         wait(for: [expectation], timeout: 1)
         _ = cancellable
     }
 
     func testCustomUserInfo() {
-        let center = TypedNotificationCenter()
+        let center = NotificationCenter()
         let expectation = expectation(description: "receive an empty notification")
         let cancellable = center.publisher(for: .customUserInfo)
             .sink { notification in
@@ -72,7 +72,7 @@ final class TypedNotificationsTests: XCTestCase {
 
     func testMacro() throws {
 #if canImport(TypedNotificationsMacro)
-        let center = TypedNotificationCenter()
+        let center = NotificationCenter()
         let expectation = expectation(description: "receive an empty notification")
         let cancellable = center.publisher(for: .macroNotification)
             .sink { notification in
@@ -91,7 +91,7 @@ final class TypedNotificationsTests: XCTestCase {
 
     func testMacroWithName() throws {
 #if canImport(TypedNotificationsMacro)
-        let center = TypedNotificationCenter()
+        let center = NotificationCenter()
         let expectation = expectation(description: "receive an empty notification")
         let cancellable = center.publisher(for: .macroNotificationWithName)
             .sink { notification in
